@@ -10,7 +10,7 @@ My main use case is to have working lsp in the `esp-hal` project which host many
 Run:
 
 ``` sh
-podman build --tag esp-rust:test -f container/rust-esp.Containerfile .
+podman build --tag esp-rust:latest -f container/rust-esp.Containerfile .
 ```
 
 ## Usage
