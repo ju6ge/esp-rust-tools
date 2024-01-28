@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Container tag to execute (default: "Latest"). Set the environment variable
+TAG="${ESP_RUST_TOOLS_CONTAINER_TAG:-"latest"}"
+IMAGE="${ESP_RUST_TOOLS_IMAGE:-"localhost/esp-rust"}"
+CONTAINER="$IMAGE:$TAG"
+
+if ! command -v podman &>/dev/null; then
+    echo "'podman' is required to run this command" 1>&2
+    exit 1
+fi
+
+podman run --rm -i \
+    --security-opt label=disable \
+    --pull=newer \
+    -v "$HOME:$HOME" \
+    -w "$PWD" \
+    --log-driver none \
+    --entrypoint '[ "/usr/local/bin/rust-analyzer" ]' \
+    "$CONTAINER" "$@"
