@@ -2,7 +2,7 @@ FROM archlinux
 
 # install base packages
 RUN pacman -Syu --noconfirm && \
-    pacman -S --noconfirm rustup gcc cmake pkg-config openssl base-devel jq
+    pacman -S --noconfirm rustup gcc cmake pkg-config openssl base-devel jq git
 
 # install rust
 RUN rustup install nightly && \
