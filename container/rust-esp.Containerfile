@@ -10,7 +10,8 @@ RUN rustup install nightly && \
 
 # install espup tool
 RUN cargo install espup && \
-   /root/.cargo/bin/espup install
+   /root/.cargo/bin/espup install && \
+   /root/.rustup/toolchains/esp/bin/cargo install ldproxy
 
 RUN ln -s /root/.rustup/toolchains/esp/bin/* /usr/local/bin/ && rm /usr/local/bin/cargo
 COPY ./cargo-proxy.sh /usr/local/bin/cargo
